@@ -1,0 +1,14 @@
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\bin\Debug\net10.0\AgileProjectTool.exe
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\bin\Debug\net10.0\AgileProjectTool.deps.json
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\bin\Debug\net10.0\AgileProjectTool.runtimeconfig.json
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\bin\Debug\net10.0\AgileProjectTool.dll
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\bin\Debug\net10.0\AgileProjectTool.pdb
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\AgileProjectTool.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\AgileProjectTool.AssemblyInfoInputs.cache
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\AgileProjectTool.AssemblyInfo.cs
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\AgileProjectTool.csproj.CoreCompileInputs.cache
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\AgileProjectTool.dll
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\refint\AgileProjectTool.dll
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\AgileProjectTool.pdb
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\AgileProjectTool.genruntimeconfig.cache
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\ref\AgileProjectTool.dll
