@@ -12,3 +12,4 @@ C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\r
 C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\AgileProjectTool.pdb
 C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\AgileProjectTool.genruntimeconfig.cache
 C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\ref\AgileProjectTool.dll
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\AgileProjectTool.sourcelink.json
