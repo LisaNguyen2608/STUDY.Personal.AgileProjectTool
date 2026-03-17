@@ -14,7 +14,6 @@ namespace AgileTool.Controllers
 
         public void AddPerson(string name, string role)
         {
-            // correctly calling the Person constructor
             Person p = new Person(persons.Count + 1, name, role);
             persons.Add(p);
             Console.WriteLine("Person added successfully.");
