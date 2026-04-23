@@ -13,3 +13,11 @@ C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\A
 C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\AgileProjectTool.genruntimeconfig.cache
 C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\ref\AgileProjectTool.dll
 C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\AgileProjectTool.sourcelink.json
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\bin\Debug\net10.0\System.Data.SqlClient.dll
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\bin\Debug\net10.0\runtimes\win-arm64\native\sni.dll
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\bin\Debug\net10.0\runtimes\win-x64\native\sni.dll
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\bin\Debug\net10.0\runtimes\win-x86\native\sni.dll
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\bin\Debug\net10.0\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\bin\Debug\net10.0\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\AgileProjectTool.csproj.AssemblyReference.cache
+C:\Users\Lieu\source\repos\AgileProjectTool\AgileProjectTool\obj\Debug\net10.0\AgilePro.2A53CA14.Up2Date

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AgileProjectTool")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f2b433494d03116d3497532d16834359dd500448")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+96bf8384002a46fb1ecef8c1a83ce30edad83bee")]
 [assembly: System.Reflection.AssemblyProductAttribute("AgileProjectTool")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AgileProjectTool")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
