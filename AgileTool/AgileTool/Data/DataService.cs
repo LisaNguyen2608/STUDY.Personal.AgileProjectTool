@@ -166,6 +166,13 @@ namespace AgileTool.Data
             myCommand.Parameters.AddWithValue("@PersonId", personId);
             myCommand.ExecuteNonQuery();
         }
+        public void AddTaskToUserStory(int taskId, int storyId)
+        {
+            SqlCommand myCommand = new SqlCommand("UPDATE TASK SET UserStoryId = @UserStoryId WHERE Id = @Id", myConnection);
+            myCommand.Parameters.AddWithValue("@UserStoryId", storyId);
+            myCommand.Parameters.AddWithValue("@Id", taskId);
+            myCommand.ExecuteNonQuery();
+        }
         public List<Task> ProduceReport()
         {
             List<Task> taskList = new List<Task>();

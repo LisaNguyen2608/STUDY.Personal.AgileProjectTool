@@ -132,8 +132,9 @@ namespace AgileTool.views
             Console.WriteLine("=== User Story Menu ===");
             Console.WriteLine("1. Add Story");
             Console.WriteLine("2. List Stories");
-            Console.WriteLine("3. Delete Story"); // TASK 4
-            Console.WriteLine("4. Back");
+            Console.WriteLine("3. Add Existing Task");
+            Console.WriteLine("4. Delete Story"); // TASK 4
+            Console.WriteLine("5. Back");
 
             int choice;
             if (!int.TryParse(Console.ReadLine(), out choice)) return;
@@ -152,7 +153,20 @@ namespace AgileTool.views
             {
                 userStoryController.ListStories();
             }
-            else if (choice == 3) // TASK 4
+            else if (choice == 3)
+            {
+                userStoryController.ListStories();
+                Console.Write("Select Story ID: ");
+                int sid = int.Parse(Console.ReadLine());
+
+                taskController.ListTasks();
+                Console.Write("Select Task ID: ");
+                int tid = int.Parse(Console.ReadLine());
+
+                taskController.AddTaskToUserStory(tid, sid);
+            }
+
+            else if (choice == 4) // TASK 4
             {
                 Console.Write("Enter Story ID to Delete (Warning: Cascade Delete): ");
                 int sid = int.Parse(Console.ReadLine());

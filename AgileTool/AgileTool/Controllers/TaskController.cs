@@ -28,6 +28,12 @@ namespace AgileTool.Controllers
                 Console.WriteLine("An error occurred while assigning person: " + ex.Message);
             }
         }
+        //Task 2
+        public void AddTaskToUserStory(int taskId, int storyId)
+        {
+            dataService.AddExistingUserStoryToProject(taskId, storyId);
+            Console.WriteLine("Task added to story!");
+        }
 
         // TASK 5
         public void UnassignPerson(int taskId, int personId)
