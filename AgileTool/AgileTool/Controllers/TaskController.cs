@@ -15,7 +15,7 @@ namespace AgileTool.Controllers
             dataService.AddTask(userStoryId, description, priority, difficulty, "General");
         }
 
-   
+
         public void AssignPerson(int taskId, int personId)
         {
             try
@@ -84,7 +84,42 @@ namespace AgileTool.Controllers
         {
             return dataService.GetAllTasks();
         }
+        public void MoveTaskState(int taskId, int newState)
+        {
+            Task task = dataService.GetTaskById(taskId);
+            if (task == null)
+            {
+                Console.WriteLine("Task not found!");
+                return;
+            }
 
+            UserStory story = dataService.GetUserStoryById(task.UserStoryId);
+            if (story.State != 2)
+            {
+                Console.WriteLine("Task can only move when the user story is IN SPRINT.");
+                return;
+            }
+
+            // Check allowed transitions
+            if (Math.Abs(newState - task.State) != 1)
+            {
+                Console.WriteLine("Invalid state transition!");
+                return;
+            }
+
+            // Dependency rule
+            if (newState == 2) // moving to In Process
+            {
+                if (!dataService.AreDependencyTasksDone(story.Id))
+                {
+                    Console.WriteLine("Cannot move task to IN PROCESS because dependency tasks are not done.");
+                    return;
+                }
+            }
+
+            dataService.UpdateTaskState(taskId, newState);
+            Console.WriteLine("Task state updated!");
+        }
         //Produce Task Report
         public void ProduceReport()
         {

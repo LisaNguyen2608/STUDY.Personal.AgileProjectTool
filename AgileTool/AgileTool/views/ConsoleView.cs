@@ -98,7 +98,7 @@ namespace AgileTool.views
                 userStoryController.ListStories();
                 Console.Write("Select Story ID: ");
                 int sid = int.Parse(Console.ReadLine());
-                
+
                 userStoryController.AddExistingStoryToProject(sid, pid);
             }
         }
@@ -134,7 +134,8 @@ namespace AgileTool.views
             Console.WriteLine("2. List Stories");
             Console.WriteLine("3. Add Existing Task");
             Console.WriteLine("4. Delete Story"); // TASK 4
-            Console.WriteLine("5. Back");
+            Console.WriteLine("5. Update Story Priority"); // TASK 8
+            Console.WriteLine("6. Back");
 
             int choice;
             if (!int.TryParse(Console.ReadLine(), out choice)) return;
@@ -172,7 +173,19 @@ namespace AgileTool.views
                 int sid = int.Parse(Console.ReadLine());
                 userStoryController.DeleteStory(sid);
             }
+            else if (choice == 5) // TASK 8
+            {
+                Console.Write("Story ID: ");
+                int sid = int.Parse(Console.ReadLine());
+
+                Console.Write("New State (1=Backlog, 2=In Sprint, 3=Done): ");
+                int newState = int.Parse(Console.ReadLine());
+
+                userStoryController.MoveUserStoryState(sid, newState);
+            }
         }
+
+
 
         public void TaskMenu()
         {
@@ -182,8 +195,9 @@ namespace AgileTool.views
             Console.WriteLine("3. Assign Person to Task");
             Console.WriteLine("4. Remove Person from Task"); // TASK 5 
             Console.WriteLine("5. Update Task Priority");    // TASK 6 
-            Console.WriteLine("6. Produce Task Report");          // TASK 9
-            Console.WriteLine("7. Back");
+            Console.WriteLine("6. Update Task State");       // TASK 7
+            Console.WriteLine("7. Produce Task Report");          // TASK 9
+            Console.WriteLine("8. Back");
             Console.Write("Choose: ");
 
             int choice;
@@ -229,7 +243,17 @@ namespace AgileTool.views
                 int prio = int.Parse(Console.ReadLine());
                 taskController.UpdatePriority(tid, prio);
             }
-            else if (choice == 6) // TASK 9
+            else if (choice == 6) // TASK 7
+            {
+                Console.Write("Task ID: ");
+                int tid = int.Parse(Console.ReadLine());
+
+                Console.Write("New State (1=ToDo, 2=InProcess, 3=Done): ");
+                int newState = int.Parse(Console.ReadLine());
+
+                taskController.MoveTaskState(tid, newState);
+            }
+            else if (choice == 7) // TASK 9
             {
                 taskController.ProduceReport();
             }

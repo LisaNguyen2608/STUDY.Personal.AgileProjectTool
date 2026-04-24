@@ -72,5 +72,12 @@ namespace AgileTool.Controllers
         {
             return dataService.GetAllUserStories();
         }
+        public void MoveUserStoryState(int storyId, int newState)
+        {
+            dataService.UpdateUserStoryState(storyId, newState);
+            Console.WriteLine("User story state updated!");
+        }
+
+
     }
 }
