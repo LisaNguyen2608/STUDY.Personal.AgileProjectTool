@@ -155,7 +155,8 @@ namespace AgileTool.views
             Console.WriteLine("3. Assign Person to Task");
             Console.WriteLine("4. Remove Person from Task"); // TASK 5 
             Console.WriteLine("5. Update Task Priority");    // TASK 6 
-            Console.WriteLine("6. Back");
+            Console.WriteLine("6. Produce Task Report");          // TASK 9
+            Console.WriteLine("7. Back");
             Console.Write("Choose: ");
 
             int choice;
@@ -200,6 +201,10 @@ namespace AgileTool.views
                 Console.Write("Enter New Priority (1-5): ");
                 int prio = int.Parse(Console.ReadLine());
                 taskController.UpdatePriority(tid, prio);
+            }
+            else if (choice == 6) // TASK 9
+            {
+                taskController.ProduceReport();
             }
         }
 

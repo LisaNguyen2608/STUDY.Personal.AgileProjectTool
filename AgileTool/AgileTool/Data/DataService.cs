@@ -141,6 +141,80 @@ namespace AgileTool.Data
             myCommand.Parameters.AddWithValue("@Id", taskId);
             myCommand.ExecuteNonQuery();
         }
+        public void AddPersonToTask(int taskId, int personId)
+        {
+            SqlCommand myCommand = new SqlCommand("INSERT INTO TASK_ASSIGNMENT (TaskId, PersonId) VALUES (@TaskId, @PersonId)", myConnection);
+            myCommand.Parameters.AddWithValue("@TaskId", taskId);
+            myCommand.Parameters.AddWithValue("@PersonId", personId);
+            myCommand.ExecuteNonQuery();
+        }
+
+        public void RemovePersonFromTask(int taskId, int personId)
+        {
+            SqlCommand myCommand = new SqlCommand("DELETE FROM TASK_ASSIGNMENT WHERE TaskId = @TaskId AND PersonId = @PersonId", myConnection);
+            myCommand.Parameters.AddWithValue("@TaskId", taskId);
+            myCommand.Parameters.AddWithValue("@PersonId", personId);
+            myCommand.ExecuteNonQuery();
+        }
+        public List<Task> ProduceReport()
+        {
+            List<Task> taskList = new List<Task>();
+
+            SqlCommand myCommand = new SqlCommand();
+            myCommand.Connection = myConnection;
+            myCommand.CommandText = "SELECT Id, UserStoryId, Description, " +
+                                    "State, Priority, Difficulty, Category " +
+                                    "FROM TASK ";
+            myCommand.CommandType = CommandType.Text;
+
+            SqlDataReader myReader = myCommand.ExecuteReader();
+            bool notEoF = myReader.Read();
+            while (notEoF)
+            {
+                Task t = new Task(
+                    Convert.ToInt32(myReader["Id"]),
+                    Convert.ToInt32(myReader["UserStoryId"]),
+                    myReader["Description"].ToString(),
+                    Convert.ToInt32(myReader["State"]),
+                    Convert.ToInt32(myReader["Priority"]),
+                    Convert.ToInt32(myReader["Difficulty"]),
+                    myReader["Category"].ToString()
+                );
+                taskList.Add(t);
+                notEoF = myReader.Read();
+            }
+            myReader.Close();
+            return taskList;
+        }
+        public List<Person> GetPersonByTask(int taskId)
+        {
+            List<Person> personList = new List<Person>();
+            SqlCommand myCommand = new SqlCommand();
+            myCommand.Connection = myConnection;
+            myCommand.CommandText = "SELECT P.Id, P.Name, P.Role " +
+                                    "FROM PERSON P " +
+                                    "INNER JOIN TASK_ASSIGNMENT TA " +
+                                    "ON P.Id = TA.PersonId " +
+                                    "WHERE TA.TASKId = @TaskId";
+            myCommand.Parameters.AddWithValue("@TaskId", taskId);
+            myCommand.CommandType = CommandType.Text;
+
+            SqlDataReader myReader = myCommand.ExecuteReader();
+            bool notEoF = myReader.Read();
+            while (notEoF)
+            {
+                Person p = new Person(
+                    Convert.ToInt32(myReader["Id"]),
+                    myReader["Name"].ToString(),
+                    myReader["Role"].ToString()
+                );
+                personList.Add(p);
+                notEoF = myReader.Read();
+            }
+            myReader.Close();
+            return personList;
+        }
+
 
         // PERSON - TEAM METHODS
 
@@ -185,22 +259,6 @@ namespace AgileTool.Data
         {
             SqlCommand myCommand = new SqlCommand("INSERT INTO PROJECT_TEAM (ProjectId, PersonId) VALUES (@ProjectId, @PersonId)", myConnection);
             myCommand.Parameters.AddWithValue("@ProjectId", projectId);
-            myCommand.Parameters.AddWithValue("@PersonId", personId);
-            myCommand.ExecuteNonQuery();
-        }
-
-        public void AddPersonToTask(int taskId, int personId)
-        {
-            SqlCommand myCommand = new SqlCommand("INSERT INTO TASK_ASSIGNMENT (TaskId, PersonId) VALUES (@TaskId, @PersonId)", myConnection);
-            myCommand.Parameters.AddWithValue("@TaskId", taskId);
-            myCommand.Parameters.AddWithValue("@PersonId", personId);
-            myCommand.ExecuteNonQuery();
-        }
-
-        public void RemovePersonFromTask(int taskId, int personId)
-        {
-            SqlCommand myCommand = new SqlCommand("DELETE FROM TASK_ASSIGNMENT WHERE TaskId = @TaskId AND PersonId = @PersonId", myConnection);
-            myCommand.Parameters.AddWithValue("@TaskId", taskId);
             myCommand.Parameters.AddWithValue("@PersonId", personId);
             myCommand.ExecuteNonQuery();
         }

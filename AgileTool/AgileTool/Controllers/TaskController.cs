@@ -78,5 +78,37 @@ namespace AgileTool.Controllers
         {
             return dataService.GetAllTasks();
         }
+
+        //Produce Task Report
+        public void ProduceReport()
+        {
+            List<Task> tasks = dataService.ProduceReport();
+            if (tasks.Count == 0)
+            {
+                Console.WriteLine("No tasks found!");
+                return;
+            }
+
+            Console.WriteLine("=== Task Report ===");
+            foreach (Task t in tasks)
+            {
+                List<Person> persons = dataService.GetPersonByTask(t.Id);
+
+                Console.WriteLine("─────────────────");
+                Console.WriteLine("ID:          " + t.Id);
+                Console.WriteLine("Description: " + t.Description);
+                Console.WriteLine("Priority:    " + t.Priority);
+                Console.WriteLine("Difficulty:  " + t.Difficulty);
+                Console.WriteLine("State:       " + t.GetStateName());
+
+                if (persons.Count == 0)
+                    Console.WriteLine("Assigned:     Nobody");
+                else
+                    foreach (Person p in persons)
+                        Console.WriteLine($"Assigned:     {p.Name} ({p.Role})");
+
+            }
+            Console.WriteLine("─────────────────");
+        }
     }
 }
