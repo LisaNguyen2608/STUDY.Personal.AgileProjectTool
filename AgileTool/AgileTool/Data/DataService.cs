@@ -46,6 +46,16 @@ namespace AgileTool.Data
             myCommand.ExecuteNonQuery();
         }
 
+        public void AddExistingUserStoryToProject(int storyId, int projectId) //Task 1
+        { 
+          SqlCommand myCommand = new SqlCommand("UPDATE USER_STORY SET ProjectId = @ProjectId WHERE Id = @StoryId", myConnection);
+            myCommand.Parameters.AddWithValue("@ProjectId", projectId);
+            myCommand.Parameters.AddWithValue("@StoryId", storyId);
+            myCommand.ExecuteNonQuery();
+        }
+        
+
+
         // USER STORY METHODS
     
         public List<UserStory> GetAllUserStories()

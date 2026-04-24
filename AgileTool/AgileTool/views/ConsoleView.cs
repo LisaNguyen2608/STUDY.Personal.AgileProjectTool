@@ -70,7 +70,8 @@ namespace AgileTool.views
             Console.WriteLine("=== Project Menu ===");
             Console.WriteLine("1. Create Project");
             Console.WriteLine("2. List Projects");
-            Console.WriteLine("3. Back");
+            Console.WriteLine("3. Add User Story to Project"); // TASK 1
+            Console.WriteLine("4. Back");
             Console.Write("Choose: ");
 
             int choice;
@@ -87,6 +88,18 @@ namespace AgileTool.views
             else if (choice == 2)
             {
                 projectController.ListProjects();
+            }
+            else if (choice == 3) // TASK 1
+            {
+                projectController.ListProjects();
+                Console.Write("Select Project ID: ");
+                int pid = int.Parse(Console.ReadLine());
+
+                userStoryController.ListStories();
+                Console.Write("Select Story ID: ");
+                int sid = int.Parse(Console.ReadLine());
+                
+                userStoryController.AddExistingStoryToProject(sid, pid);
             }
         }
 

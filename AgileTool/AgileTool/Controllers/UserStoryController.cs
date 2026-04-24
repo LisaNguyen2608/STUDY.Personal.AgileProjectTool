@@ -61,6 +61,13 @@ namespace AgileTool.Controllers
             Console.WriteLine("─────────────────");
         }
 
+        public void AddExistingStoryToProject(int storyId, int projectId)
+        {
+            dataService.AddExistingUserStoryToProject(storyId, projectId);
+            Console.WriteLine("Story has been added to project!");
+        }
+
+
         public List<UserStory> GetAllStories()
         {
             return dataService.GetAllUserStories();
