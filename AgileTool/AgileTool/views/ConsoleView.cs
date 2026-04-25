@@ -255,7 +255,9 @@ namespace AgileTool.views
             }
             else if (choice == 7) // TASK 9
             {
-                taskController.ProduceReport();
+                Console.Write("Enter task Id: ");
+                int taskId = int.Parse(Console.ReadLine());
+                taskController.ProduceTaskReport(taskId);
             }
         }
 

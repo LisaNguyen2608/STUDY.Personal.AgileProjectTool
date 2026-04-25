@@ -37,6 +37,17 @@ namespace AgileTool.Controllers
                 Console.WriteLine("ID:          " + p.Id);
                 Console.WriteLine("Name:        " + p.Name);
                 Console.WriteLine("Description: " + p.Description);
+
+
+                //Show user stories inside the project:
+                List<UserStory> stories = dataService.GetStoriesByProjectId(p.Id);
+
+                Console.WriteLine(" User Stories:");
+                if (stories.Count == 0)
+                    Console.WriteLine("   (none)");
+                else
+                    foreach (var s in stories)
+                        Console.WriteLine("  Story ID: " + s.Id + "-" + s.Description);
             }
             Console.WriteLine("─────────────────");
         }

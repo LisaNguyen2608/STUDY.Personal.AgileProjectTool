@@ -9,7 +9,6 @@ namespace AgileTool.Data
     class DataService
     {
         private SqlConnection myConnection;
-
         public DataService()
         {
             string connstr = @"Server=(localdb)\MSSQLLocalDB;
@@ -20,7 +19,6 @@ namespace AgileTool.Data
         }
 
         // PROJECT METHODS
-
         public List<Project> GetAllProjects()
         {
             List<Project> projectList = new List<Project>();
@@ -148,6 +146,38 @@ namespace AgileTool.Data
             myReader.Close();
             return story;
         }
+
+        // Get all user stories that belong to a specific project
+        public List<UserStory> GetStoriesByProjectId(int projectId)
+        {
+            List<UserStory> list = new List<UserStory>();
+
+            SqlCommand cmd = new SqlCommand(
+                "SELECT Id, ProjectId, Description, State, Priority FROM USER_STORY WHERE ProjectId = @pid",
+                myConnection
+            );
+
+            cmd.Parameters.AddWithValue("@pid", projectId);
+
+            SqlDataReader r = cmd.ExecuteReader();
+
+            while (r.Read())
+            {
+                UserStory s = new UserStory(
+                    Convert.ToInt32(r["Id"]),
+                    Convert.ToInt32(r["ProjectId"]),
+                    r["Description"].ToString(),
+                    Convert.ToInt32(r["State"]),
+                    Convert.ToInt32(r["Priority"])
+                );
+
+                list.Add(s);
+            }
+
+            r.Close();
+            return list;
+        }
+
 
         // TASK METHODS
 
@@ -328,36 +358,44 @@ namespace AgileTool.Data
 
             return true;
         }
-        public List<Task> ProduceReport()
+        public void ProduceTaskReport(int taskId)
         {
-            List<Task> taskList = new List<Task>();
-
-            SqlCommand myCommand = new SqlCommand();
-            myCommand.Connection = myConnection;
-            myCommand.CommandText = "SELECT Id, UserStoryId, Description, " +
-                                    "State, Priority, Difficulty, Category " +
-                                    "FROM TASK ";
-            myCommand.CommandType = CommandType.Text;
-
-            SqlDataReader myReader = myCommand.ExecuteReader();
-            bool notEoF = myReader.Read();
-            while (notEoF)
+            Task t = GetTaskById(taskId);
+            if (t == null)
             {
-                Task t = new Task(
-                    Convert.ToInt32(myReader["Id"]),
-                    Convert.ToInt32(myReader["UserStoryId"]),
-                    myReader["Description"].ToString(),
-                    Convert.ToInt32(myReader["State"]),
-                    Convert.ToInt32(myReader["Priority"]),
-                    Convert.ToInt32(myReader["Difficulty"]),
-                    myReader["Category"].ToString()
-                );
-                taskList.Add(t);
-                notEoF = myReader.Read();
+                Console.WriteLine("Task not found!");
+                return;
             }
-            myReader.Close();
-            return taskList;
+
+            UserStory s = GetUserStoryById(t.UserStoryId);
+            List<Person> persons = GetPersonByTask(t.Id);
+
+            Console.WriteLine("=== Task Report ===");
+            Console.WriteLine("ID:            " + t.Id);
+            Console.WriteLine("Description:   " + t.Description);
+            Console.WriteLine("Priority:      " + t.Priority);
+            Console.WriteLine("Difficulty:    " + t.Difficulty);
+            Console.WriteLine("State:         " + t.GetStateName());
+            Console.WriteLine("Category:      " + t.Category);
+            Console.WriteLine("Planned Time:  " + t.PlannedTime);
+            Console.WriteLine("Actual Time:   " + t.ActualTime);
+
+            Console.WriteLine();
+            Console.WriteLine("User Story ID: " + s.Id);
+            Console.WriteLine("Story State:   " + s.GetStateName());
+            Console.WriteLine("Story Desc:    " + s.Description);
+
+            Console.WriteLine();
+            Console.WriteLine("Assigned Persons:");
+            if (persons.Count == 0)
+                Console.WriteLine("  Nobody");
+            else
+                foreach (var p in persons)
+                    Console.WriteLine("  " + p.Name + " (" + p.Role + ")");
+
+            Console.WriteLine("─────────────────");
         }
+
         public List<Person> GetPersonByTask(int taskId)
         {
             List<Person> personList = new List<Person>();

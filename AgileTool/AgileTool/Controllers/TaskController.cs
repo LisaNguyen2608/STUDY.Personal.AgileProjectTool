@@ -121,35 +121,47 @@ namespace AgileTool.Controllers
             Console.WriteLine("Task state updated!");
         }
         //Produce Task Report
-        public void ProduceReport()
+        public void ProduceTaskReport(int taskId)
         {
-            List<Task> tasks = dataService.ProduceReport();
-            if (tasks.Count == 0)
+            // Get the task
+            Task t = dataService.GetTaskById(taskId);
+            if (t == null)
             {
-                Console.WriteLine("No tasks found!");
+                Console.WriteLine("Task not found!");
                 return;
             }
 
+            // Get the user story linked to this task
+            UserStory s = dataService.GetUserStoryById(t.UserStoryId);
+
+            // Get persons assigned to this task
+            List<Person> persons = dataService.GetPersonByTask(taskId);
+
             Console.WriteLine("=== Task Report ===");
-            foreach (Task t in tasks)
-            {
-                List<Person> persons = dataService.GetPersonByTask(t.Id);
+            Console.WriteLine("ID:            " + t.Id);
+            Console.WriteLine("Description:   " + t.Description);
+            Console.WriteLine("Priority:      " + t.Priority);
+            Console.WriteLine("Difficulty:    " + t.Difficulty);
+            Console.WriteLine("State:         " + t.State);
+            Console.WriteLine("Category:      " + t.Category);
+            Console.WriteLine("Planned Time:  " + t.PlannedTime);
+            Console.WriteLine("Actual Time:   " + t.ActualTime);
 
-                Console.WriteLine("─────────────────");
-                Console.WriteLine("ID:          " + t.Id);
-                Console.WriteLine("Description: " + t.Description);
-                Console.WriteLine("Priority:    " + t.Priority);
-                Console.WriteLine("Difficulty:  " + t.Difficulty);
-                Console.WriteLine("State:       " + t.GetStateName());
+            Console.WriteLine();
+            Console.WriteLine("User Story ID: " + s.Id);
+            Console.WriteLine("Story State:   " + s.State);
+            Console.WriteLine("Story Desc:    " + s.Description);
 
-                if (persons.Count == 0)
-                    Console.WriteLine("Assigned:     Nobody");
-                else
-                    foreach (Person p in persons)
-                        Console.WriteLine($"Assigned:     {p.Name} ({p.Role})");
+            Console.WriteLine();
+            Console.WriteLine("Assigned Persons:");
+            if (persons.Count == 0)
+                Console.WriteLine("  Nobody");
+            else
+                foreach (var p in persons)
+                    Console.WriteLine("  " + p.Name + " (" + p.Role + ")");
 
-            }
-            Console.WriteLine("─────────────────");
+            Console.WriteLine("---------------------------");
         }
+
     }
 }

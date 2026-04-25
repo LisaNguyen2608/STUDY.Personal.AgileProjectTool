@@ -57,9 +57,20 @@ namespace AgileTool.Controllers
                 Console.WriteLine("Description: " + s.Description);
                 Console.WriteLine("Priority:    " + s.Priority);
                 Console.WriteLine("State:       " + s.GetStateName());
+
+                // Show tasks insise this story
+                List<Task> tasks =  dataService.GetTasksByUserStory(s.Id);
+
+                Console.WriteLine(" Taks:");
+                if (tasks.Count == 0)
+                    Console.WriteLine("  (none)");
+                else
+                    foreach (var t in tasks)
+                        Console.WriteLine("  Task ID: " + t.Id + "-" + t.Description);
             }
-            Console.WriteLine("─────────────────");
+                Console.WriteLine("─────────────────"); 
         }
+            
 
         public void AddExistingStoryToProject(int storyId, int projectId)
         {
