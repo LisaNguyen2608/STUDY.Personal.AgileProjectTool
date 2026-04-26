@@ -205,6 +205,7 @@ namespace AgileTool.views
 
             if (choice == 1)
             {
+                userStoryController.ListStories();
                 Console.Write("Story ID: ");
                 int sid = int.Parse(Console.ReadLine());
                 Console.Write("Description: ");

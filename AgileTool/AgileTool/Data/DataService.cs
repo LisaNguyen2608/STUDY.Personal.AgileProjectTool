@@ -358,43 +358,6 @@ namespace AgileTool.Data
 
             return true;
         }
-        public void ProduceTaskReport(int taskId)
-        {
-            Task t = GetTaskById(taskId);
-            if (t == null)
-            {
-                Console.WriteLine("Task not found!");
-                return;
-            }
-
-            UserStory s = GetUserStoryById(t.UserStoryId);
-            List<Person> persons = GetPersonByTask(t.Id);
-
-            Console.WriteLine("=== Task Report ===");
-            Console.WriteLine("ID:            " + t.Id);
-            Console.WriteLine("Description:   " + t.Description);
-            Console.WriteLine("Priority:      " + t.Priority);
-            Console.WriteLine("Difficulty:    " + t.Difficulty);
-            Console.WriteLine("State:         " + t.GetStateName());
-            Console.WriteLine("Category:      " + t.Category);
-            Console.WriteLine("Planned Time:  " + t.PlannedTime);
-            Console.WriteLine("Actual Time:   " + t.ActualTime);
-
-            Console.WriteLine();
-            Console.WriteLine("User Story ID: " + s.Id);
-            Console.WriteLine("Story State:   " + s.GetStateName());
-            Console.WriteLine("Story Desc:    " + s.Description);
-
-            Console.WriteLine();
-            Console.WriteLine("Assigned Persons:");
-            if (persons.Count == 0)
-                Console.WriteLine("  Nobody");
-            else
-                foreach (var p in persons)
-                    Console.WriteLine("  " + p.Name + " (" + p.Role + ")");
-
-            Console.WriteLine("─────────────────");
-        }
 
         public List<Person> GetPersonByTask(int taskId)
         {
